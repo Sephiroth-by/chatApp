@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:5001
+@urlPath = api/v1
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/reactions/63c7ffaf021616d432abdc80
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/single/reaction/username/Lanny/63c7ffaf021616d432abdc80
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/reactions/username/Lanny
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+POST {{baseUrl}}/{{urlPath}}/post/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+# type - like | love | wow | happy | sad | angry
+# previousReaction (if it exist) - like | love | wow | happy | sad | angry
+# postReactions - increment new reaction by 1 and decrement previous reaction by 1
+
+{
+  "userTo": "63c69252da53a3e85c8efbd5",
+  "postId": "63c7ffaf021616d432abdc80",
+  "type": "sad",
+  "previousReaction": "",
+  "postReactions": {"like": 0,"love": 0,"happy": 0,"sad": 0,"wow": 0,"angry": 0},
+  "profilePicture": "image"
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/post/reaction/63c7ffaf021616d432abdc80/63c7ffaf021616d432abdc80/{"like": 0,"love": 0,"happy": 0,"sad": 0,"wow": 0,"angry": 0}
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{}
+
+
