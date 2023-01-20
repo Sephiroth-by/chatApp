@@ -2,59 +2,45 @@
 @urlPath = api/v1
 
 ###
-POST {{baseUrl}}/{{urlPath}}/signup
-Content-Type: application/json
-Accept: application/json
-withCredentials: true
-
-{
-  "username": "wanny",
-  "password": "qwerty",
-  "email": "waniel@gmail.com",
-  "avatarColor": "red",
-  "avatarImage": ""
-}
-
-###
-POST {{baseUrl}}/{{urlPath}}/signin
-Content-Type: application/json
-Accept: application/json
-withCredentials: true
-
-{
-  "username": "kanny",
-  "password": "qwerty"
-}
-
-###
-GET {{baseUrl}}/{{urlPath}}/signout
+GET {{baseUrl}}/{{urlPath}}/user/following
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/currentuser
+GET {{baseUrl}}/{{urlPath}}/user/followers/63ca600ad6d49233bd2949a1
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 ###
-POST {{baseUrl}}/{{urlPath}}/forgot-password
+PUT {{baseUrl}}/{{urlPath}}/user/follow/63ca6092d6d49233bd2949ad
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
-{
-  "email": "laniel@gmail.com"
-}
+{}
 
 ###
-POST {{baseUrl}}/{{urlPath}}/reset-password/d465278d16c4ea290fcc27694de4bb113789696b
+PUT {{baseUrl}}/{{urlPath}}/user/unfollow/63ca6092d6d49233bd2949ad/63ca600ad6d49233bd2949a1
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
-{
-  "password": "lanny",
-  "confirmPassword": "lanny"
-}
+{}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/block/63ca6092d6d49233bd2949ad
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/unblock/63ca6092d6d49233bd2949ad
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{}

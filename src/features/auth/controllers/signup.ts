@@ -12,7 +12,6 @@ import { uploads } from '@global/helpers/cloudinary-upload';
 import { UserCache } from '@service/redis/user.cache';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import { authQueue } from '@service/queues/auth.queue';
-import { omit } from 'lodash';
 import { userQueue } from '@service/queues/user.queue';
 import JWT from 'jsonwebtoken';
 import { config } from '@root/config';
@@ -48,13 +47,11 @@ export class SignUp {
     userDataForCache.profilePicture = `https://res.cloudinary.com/dr0hd96ex/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
-    omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
     authQueue.addAuthUserJob('addAuthUserToDB', { value: authData });
     userQueue.addUserJob('addUserToDB', { value: userDataForCache });
 
     const userJwt: string = SignUp.prototype.signToken(authData, userObjectId);
     req.session = { jwt: userJwt };
-
     res.status(HTTP_STATUS.CREATED).json({ message: 'User created successfully', user: userDataForCache, token: userJwt });
   }
 
