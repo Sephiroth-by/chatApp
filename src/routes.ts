@@ -1,3 +1,4 @@
+import { imageRoutes } from './features/images/routes/imageRoutes';
 import { authMiddleware } from '@global/helpers/auth-middleware';
 import { serverAdapter } from '@service/queues/base.queue';
 import { authRoutes } from '@auth/routes/authRoutes';
@@ -23,6 +24,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, authMiddleware.verifyUser, commentRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, followerRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, notificationRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, imageRoutes.routes());
   };
   routes();
 };
